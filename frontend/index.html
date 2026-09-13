@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>家庭财务管理系统</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <!-- Login Screen -->
+  <div id="loginScreen" class="login-screen" style="display:none">
+    <form id="loginForm" class="login-card">
+      <div class="login-logo">财</div>
+      <h1>家庭财务管理系统</h1>
+      <p class="login-sub">请输入家庭密码</p>
+      <input id="loginPassword" class="login-input" type="password" placeholder="密码" autocomplete="current-password" required>
+      <button type="submit" class="login-btn">登录</button>
+      <div id="loginError" class="login-error"></div>
+    </form>
+  </div>
+
+  <div id="app" style="display:none">
+    <!-- Sidebar Navigation -->
+    <aside id="sidebar">
+      <div class="sidebar-header">
+        <div class="logo">财</div>
+        <div>
+          <div class="family-name" id="familyNameDisplay">我的家庭</div>
+          <div class="family-sub">财务管理系统</div>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="#dashboard" class="nav-item active" data-page="dashboard">
+          <span class="nav-icon">览</span>
+          <span>总览</span>
+        </a>
+        <a href="#balance" class="nav-item" data-page="balance">
+          <span class="nav-icon">资</span>
+          <span>资产负债表</span>
+        </a>
+        <a href="#income" class="nav-item" data-page="income">
+          <span class="nav-icon">益</span>
+          <span>利润表</span>
+        </a>
+        <a href="#cashflow" class="nav-item" data-page="cashflow">
+          <span class="nav-icon">流</span>
+          <span>现金流量表</span>
+        </a>
+        <a href="#settings" class="nav-item" data-page="settings">
+          <span class="nav-icon">设</span>
+          <span>设置</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="period-label">当前账期</div>
+        <div class="period-display-wrap">
+          <button class="period-display-btn" id="periodDisplayBtn" onclick="App.togglePeriodPicker()">
+            <span id="periodDisplayText">2026年04月</span>
+            <span class="period-caret">▾</span>
+          </button>
+          <div id="periodPickerPopup" class="period-picker-popup" style="display:none">
+            <div class="pp-year-row">
+              <button class="pp-year-btn" onclick="App.ppChangeYear(-1)">‹</button>
+              <span id="ppYear">2026</span>
+              <button class="pp-year-btn" onclick="App.ppChangeYear(1)">›</button>
+            </div>
+            <div class="pp-months" id="ppMonths"></div>
+          </div>
+        </div>
+        <button class="btn-copy-last" id="btnCopyLast" title="复制上月资产负债表数据">
+          复制上月资产数据
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main id="main">
+      <header id="topbar">
+        <div class="topbar-left">
+          <h1 id="pageTitle">总览</h1>
+          <span class="period-badge" id="periodBadge"></span>
+        </div>
+        <div class="topbar-right">
+          <span id="saveStatus" class="save-status"></span>
+        </div>
+      </header>
+
+      <!-- Pages -->
+      <div id="page-dashboard" class="page active">
+        <!-- Rendered by JS -->
+      </div>
+
+      <div id="page-balance" class="page">
+        <!-- Rendered by JS -->
+      </div>
+
+      <div id="page-income" class="page">
+        <!-- Rendered by JS -->
+      </div>
+
+      <div id="page-cashflow" class="page">
+        <!-- Rendered by JS -->
+      </div>
+
+      <div id="page-settings" class="page">
+        <!-- Rendered by JS -->
+      </div>
+    </main>
+  </div>
+
+  <!-- Toast notification -->
+  <div id="toast" class="toast"></div>
+
+  <script src="js/api.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/calc.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/pages.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
